@@ -1,47 +1,65 @@
 #include <SPI.h>
 #include <LoRa.h>
 
-int counter = 0;
+// khai báo kết nối chân Lora-Uno
+const int NSS = 10;
+const int RST = 9;
+const int DIO0 = 2;
 
 void setup() {
   Serial.begin(9600);
   while (!Serial);
 
-  // Configure LoRa module pins (adjust as needed)
-  LoRa.setPins(SS, 9, 2);  // Replace RST with actual pin number
+  // khởi tạo Lora
+  LoRa.setPins(NSS, RST, DIO0);
 
   if (!LoRa.begin(915E6)) {
     Serial.println("Starting LoRa failed!");
     while (1);
   }
 
-  // Set spreading factor and bandwidth (adjust as needed)
+  // Thiết lập hệ số trải phổ (spreading factor). 
+  // Giá trị SF càng cao, khoảng cách truyền càng xa 
+  // nhưng tốc độ truyền dữ liệu càng chậm và ngược lại.
   LoRa.setSpreadingFactor(7);
+
+  // Thiết lập băng thông tín hiệu.
   LoRa.setSignalBandwidth(125E3);
 }
 
+
 void loop() {
-  Serial.print("Sending packet: ");
-  Serial.println(counter);
+  // kiểm tra có dữ liệu gửi không
+  if (Serial.available() > 255){
+    Serial.println("kich thuoc qua lon, khong the gui");
+  }
+  else if (Serial.available() > 0){
+    // đọc dữ liệu từ terminal
+    String inputString = Serial.readStringUntil('\n');
 
-  // gui goi tin
-  LoRa.beginPacket();
-  LoRa.print("Hello from Arduino: ");
-  LoRa.print(counter);
-  LoRa.endPacket();
+    // đóng gói dữ liệu và gửi
+    LoRa.beginPacket();
+    LoRa.print(inputString);
+    LoRa.endPacket();
 
-
-  int packetSize = LoRa.parsePacket();
-  if (packetSize) {
-    String r = "";
-    while (LoRa.available()) {
-      r += (char)LoRa.read();
-    }
-    Serial.println(r);
-    // if(r == "da nhan duoc")
-    //   Serial.println("oke");
+    // hiển thị dữ liệu đã gửi đi
+    Serial.print("gui: ");
+    Serial.println(inputString);
+    
   }
 
-  counter++;
-  delay(5000);
+  // kiểm tra có gói tin nào được nhận
+  // int packetSize = LoRa.parsePacket();
+  if (LoRa.parsePacket()) {
+    // đọc các byte dữ liệu trong gói
+    String receivedMessage = ""; 
+    while (LoRa.available()) {
+      receivedMessage += (char)LoRa.read();
+    }
+
+    // hien thi goi tin
+    Serial.print("nhan: ");
+    Serial.println(receivedMessage);
+  }
+  Serial.flush();
 }
