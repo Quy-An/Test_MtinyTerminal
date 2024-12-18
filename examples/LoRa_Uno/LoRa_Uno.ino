@@ -24,11 +24,23 @@ void loop() {
   Serial.print("Sending packet: ");
   Serial.println(counter);
 
-  // Create LoRa packet
+  // gui goi tin
   LoRa.beginPacket();
   LoRa.print("Hello from Arduino: ");
   LoRa.print(counter);
   LoRa.endPacket();
+
+
+  int packetSize = LoRa.parsePacket();
+  if (packetSize) {
+    String r = "";
+    while (LoRa.available()) {
+      r += (char)LoRa.read();
+    }
+    Serial.println(r);
+    // if(r == "da nhan duoc")
+    //   Serial.println("oke");
+  }
 
   counter++;
   delay(5000);

@@ -23,14 +23,22 @@ void loop() {
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
     String receivedMessage = "";
+    // doc goi tin
     while (LoRa.available()) {
       receivedMessage += (char)LoRa.read();
     }
-  else
-    Serial.print("khong nhan duoc");
 
-    // Print received message to serial monitor
+    // hien thi goi tin
     Serial.println(receivedMessage);
 
+    // gui tin hieu phan hoi
+    LoRa.beginPacket();
+    LoRa.print("123456");
+    LoRa.endPacket();
+    delay(3000);
+
   }
+  // else
+  //   Serial.println("khong nhan duoc");
+
 }
