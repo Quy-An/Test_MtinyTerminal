@@ -1,0 +1,120 @@
+https://snippet-generator.app/
+
+==========ktth======================================
+#pragma once
+
+#include "kxnTask.h"
+
+DEFINE_TASK_STATE(${TM_FILENAME_BASE}){
+    ${TM_FILENAME_BASE}_ON,
+    ${TM_FILENAME_BASE}_OFF,
+};
+
+CREATE_TASK(${TM_FILENAME_BASE})
+/*Add your variable here*/
+
+void setup()
+{
+    /*Add your code setup here*/
+    stop();
+}
+
+void loop()
+{
+    switch (getState())
+    {
+    case ${TM_FILENAME_BASE}_ON:
+        /*code*/
+        kDelay(0);
+        setState(${TM_FILENAME_BASE}_OFF);
+        break;
+
+    case ${TM_FILENAME_BASE}_OFF:
+        /*code*/
+        kDelay(0);
+        setState(${TM_FILENAME_BASE}_ON);
+        break;
+
+    default:
+        break;
+    }
+}
+
+void start()
+{
+    kxnTaskManager.add(this);
+    setState(${TM_FILENAME_BASE}_ON);
+}
+
+void stop()
+{
+    kDelay(0);
+    setStateIdle();
+}
+
+END
+
+/********************************/
+
+==========kxnth======================================
+
+#ifndef ${TM_FILENAME_BASE}__H
+#define ${TM_FILENAME_BASE}__H
+
+#include "kxnTask.h"
+
+DEFINE_TASK_STATE(${TM_FILENAME_BASE}){
+    ${TM_FILENAME_BASE}_ON,
+    ${TM_FILENAME_BASE}_OFF,
+};
+
+CREATE_TASK(${TM_FILENAME_BASE})
+/*Add your variable here*/
+
+void setup()
+{
+    /*Add your code setup here*/
+    stop();
+}
+
+void loop()
+{
+    switch (getState())
+    {
+    case ${TM_FILENAME_BASE}_ON:
+        /*code*/
+        kDelay(0);
+        setState(${TM_FILENAME_BASE}_OFF);
+        break;
+
+    case ${TM_FILENAME_BASE}_OFF:
+        /*code*/
+        kDelay(0);
+        setState(${TM_FILENAME_BASE}_ON);
+        break;
+
+    default:
+        break;
+    }
+}
+
+void start()
+{
+    kxnTaskManager.add(this);
+    setState(${TM_FILENAME_BASE}_ON);
+}
+
+void stop()
+{
+    kDelay(0);
+    setStateIdle();
+}
+
+void runFast(){
+
+}
+
+END
+
+#endif
+

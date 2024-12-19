@@ -1,0 +1,25 @@
+kxnTask KEYWORD1
+kxnTaskManagerClass KEYWORD1
+kxnTaskManager      KEYWORD1
+
+CREATE_TASK   KEYWORD1
+DEFINE_TASK_STATE KEYWORD1
+END_CREATE_TASK   KEYWORD1
+END   KEYWORD1
+
+kDelay KEYWORD2
+getState KEYWORD2
+isStateStop KEYWORD2
+isStateStart  KEYWORD2
+isStateIdle  KEYWORD2
+setState  KEYWORD2
+setStateStop  KEYWORD2
+setStateIdle  KEYWORD2
+
+stop  KEYWORD2
+start  KEYWORD2
+run  KEYWORD2
+
+enumStatekxnTask KEYWORD3
+
+EN_KXNTASK_YIELD        LITERAL1

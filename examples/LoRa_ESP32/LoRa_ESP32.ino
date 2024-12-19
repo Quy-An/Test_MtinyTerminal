@@ -1,3 +1,8 @@
+/*
+  board esp32 phiên bản 3.0.7
+  thư viện LoRa phiên bản 0.8.0
+ */
+
 #include <SPI.h>
 #include <LoRa.h>
 
@@ -5,6 +10,8 @@
 const int NSS = 5;
 const int RST = 13;
 const int DIO0 = 14;
+
+// const char data = '012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678912345';
 
 void setup() {
   Serial.begin(9600);
@@ -25,11 +32,20 @@ void setup() {
 
   // Thiết lập băng thông tín hiệu.
   LoRa.setSignalBandwidth(125E3);
+  
+  // for(int i = 0; i < 10; i++){
+  //   Serial.println(i);
+  //   LoRa.beginPacket();
+  //   LoRa.print("012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678912345");
+  //   LoRa.endPacket();
+
+    
+  //   // delay(100);
+  // }
 }
 
 
 void loop() {
-  // kiểm tra có dữ liệu gửi không
   // kiểm tra có dữ liệu gửi không
   if (Serial.available() > 255){
     Serial.println("kich thuoc qua lon, khong the gui");

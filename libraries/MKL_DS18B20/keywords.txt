@@ -1,0 +1,33 @@
+# Syntax Colouring Map For MKL_DS18B20
+
+
+# Data types (KEYWORD1)
+MKL_DS18B20	KEYWORD1
+OneWire	KEYWORD1
+DeviceAddress	KEYWORD1
+
+
+# Methods and Functions (KEYWORD2)
+begin KEYWORD2
+isConnected KEYWORD2
+
+requestTemperatures	KEYWORD2
+isConversionComplete	KEYWORD2
+getTempC	KEYWORD2
+
+getAddress	KEYWORD2
+
+setResolution	KEYWORD2
+getResolution	KEYWORD2
+
+setConfig	KEYWORD2
+getConfig	KEYWORD2
+
+
+# Constants (LITERAL1)
+MKL_DS18B20_LIB_VERSION	LITERAL1
+
+DEVICE_DISCONNECTED	LITERAL1
+DEVICE_CRC_ERROR	LITERAL1
+MKL_DS18B20_CLEAR	LITERAL1
+MKL_DS18B20_CRC	LITERAL1

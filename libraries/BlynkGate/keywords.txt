@@ -1,0 +1,28 @@
+#######################################
+# Syntax Coloring Map for exp:BlynkGate  #
+#######################################
+
+#######################################
+#       Datatypes (KEYWORD1)          # 
+#######################################
+
+BlynkGate	KEYWORD1
+Blynk  KEYWORD1
+param  KEYWORD1
+request  KEYWORD1
+
+#######################################
+#  Methods and Functions (KEYWORD2)   #
+#######################################
+
+run	KEYWORD2
+begin  KEYWORD2
+virtualWrite  KEYWORD2
+BLYNK_WRITE_DEFAULT  KEYWORD2
+asInt  KEYWORD2
+asString  KEYWORD2
+asFloat  KEYWORD2
+
+#######################################
+#         Constants (LITERAL1)        #
+#######################################

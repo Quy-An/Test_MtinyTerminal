@@ -1,3 +1,8 @@
+/*
+  board esp32 phiên bản 3.0.7
+  thư viện LoRa phiên bản 0.8.0
+ */
+
 #include <SPI.h>
 #include <LoRa.h>
 
@@ -49,8 +54,8 @@ void loop() {
   }
 
   // kiểm tra có gói tin nào được nhận
-  // int packetSize = LoRa.parsePacket();
-  if (LoRa.parsePacket()) {
+  int packetSize = LoRa.parsePacket();
+  if (packetSize) {
     // đọc các byte dữ liệu trong gói
     String receivedMessage = ""; 
     while (LoRa.available()) {
@@ -60,6 +65,8 @@ void loop() {
     // hien thi goi tin
     Serial.print("nhan: ");
     Serial.println(receivedMessage);
+    Serial.print("kich thuoc: ");
+    Serial.println(packetSize);
   }
   Serial.flush();
 }

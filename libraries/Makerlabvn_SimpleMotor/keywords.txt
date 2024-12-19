@@ -1,0 +1,18 @@
+Makerlabvn_SimpleMotor KEYWORD1
+
+motorA_fw KEYWORD2
+motorB_fw KEYWORD2
+
+motorA_bw KEYWORD2
+motorB_bw KEYWORD2
+
+motorA_stop KEYWORD2
+motorB_stop KEYWORD2
+
+car_fw KEYWORD2
+car_bw KEYWORD2
+
+car_rotateL KEYWORD2
+car_rotateR KEYWORD2
+
+car_stop KEYWORD2
