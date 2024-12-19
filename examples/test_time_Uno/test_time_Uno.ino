@@ -12,7 +12,7 @@ const int RST = 9;
 const int DIO0 = 2;
 
 const int SF = 7;
-const int BW = 500E3;
+const int BW = 10^3 * 500;
 
 
 void setup() {
@@ -30,7 +30,7 @@ void setup() {
   // Thiết lập hệ số trải phổ (spreading factor). 
   // Giá trị SF càng cao, khoảng cách truyền càng xa 
   // nhưng tốc độ truyền dữ liệu càng chậm và ngược lại.
-  LoRa.setSpreadingFactor(SF);
+  LoRa.setSpreadingFactor(7);
 
   // Thiết lập băng thông tín hiệu.
   LoRa.setSignalBandwidth(125E3);
@@ -42,10 +42,6 @@ void loop() {
   // kiểm tra có gói tin nào được nhận
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
-    // // phản hồi
-    // LoRa.beginPacket();
-    // LoRa.print("1");
-    // LoRa.endPacket();
 
     // đọc các byte dữ liệu trong gói
     String receivedMessage = ""; 
@@ -53,13 +49,16 @@ void loop() {
       receivedMessage += (char)LoRa.read();
     }
 
+    LoRa.beginPacket();
+    LoRa.print(receivedMessage);
+    LoRa.endPacket();
+
     // hien thi goi tin
     Serial.print("nhan: ");
     Serial.println(receivedMessage);
+    Serial.println(packetSize);
 
-    LoRa.beginPacket();
-    LoRa.print("1");
-    LoRa.endPacket();
+    // Serial.println(packetSize);
   }
   Serial.flush();
 }

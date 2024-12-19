@@ -12,7 +12,7 @@ const int RST = 13;
 const int DIO0 = 14;
 
 const int SF = 7;
-const int BW = 500E3;
+const int BW = 10^3 * 500;
 
 unsigned long transTime;
 
@@ -31,7 +31,7 @@ void setup() {
   // Thiết lập hệ số trải phổ (spreading factor). 
   // Giá trị SF càng cao, khoảng cách truyền càng xa 
   // nhưng tốc độ truyền dữ liệu càng chậm và ngược lại.
-  LoRa.setSpreadingFactor(SF);
+  LoRa.setSpreadingFactor(7);
 
   // Thiết lập băng thông tín hiệu.
   LoRa.setSignalBandwidth(125E3);
@@ -51,18 +51,29 @@ void loop() {
     LoRa.endPacket();
     transTime = millis();
 
-    // hiển thị dữ liệu đã gửi
-    Serial.print("gui: ");
-    Serial.println(inputString);
+    // // hiển thị dữ liệu đã gửi
+    // Serial.print("gui: ");
+    // Serial.println(inputString);
 
   }
 
   // kiểm tra có gói tin nào được nhận
   int packetSize = LoRa.parsePacket();
   if (packetSize) {
+    String receivedMessage = ""; 
+    while (LoRa.available()) {
+      receivedMessage += (char)LoRa.read();
+    }
     unsigned long reTime = millis();
+
+    
     Serial.print("phan hoi: ");
     Serial.println(reTime - transTime);
+    // hien thi goi tin
+    Serial.print("nhan: ");
+    Serial.println(receivedMessage);
+    Serial.println(packetSize);
+    
   }
   Serial.flush();
 }
